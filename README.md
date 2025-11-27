@@ -63,7 +63,7 @@ Los modelos utilizados son compatibles entre ambos proyectos para que la comunic
 
 El sistema utiliza **SQL Server** para almacenar:
 
---Aun sin especificar
+- Aun sin especificar
 
 La Web API es la responsable de realizar todas las operaciones sobre la base de datos.
 
