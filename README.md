@@ -71,5 +71,5 @@ La Web API es la responsable de realizar todas las operaciones sobre la base de 
 
 ## Objetivo del Proyecto
 
-Construir una aplicación funcional y escalable basada en una arquitectura separada mediante Web API + MVC, permitiendo una administración clara del código, un mantenimiento más sencillo y una comunicación estandarizada mediante JSON.
+Construir una aplicación separada mediante Web API + MVC, permitiendo un codigo claro.
 
