@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "RecetasDeCocina\\API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "RecetasDeCocinaWeb\\RecetasDeCocinaWeb.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

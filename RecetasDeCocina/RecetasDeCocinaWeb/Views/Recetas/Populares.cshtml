@@ -1,0 +1,133 @@
+﻿@model List<RecetasDeCocinaWeb.Models.RecetaRespuesta>
+
+@{
+    ViewBag.Title = "Mas Populares";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Styles_Home.css" />
+}
+
+<div class="contenedor-recetas-all">
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var receta in Model)
+        {
+            <div class="contenedor-datos-default">
+
+                <div class="contenedor-datos">
+
+                    <div class="fila-datos">
+
+
+                        <div class="principal-users">
+                            <div class="user">
+                                @if (!string.IsNullOrEmpty(receta.ImagenUsuario))
+                                {
+                                    <img src="~/Content/usuarios/@receta.ImagenUsuario" class="logo-usuario" alt="@receta.NombreUsuario" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/logo-default/logo.png" class="logo-usuario" alt="Default" />
+                                }
+                                <span class="nombre-usuario">@receta.NombreUsuario</span>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(receta.ImagenReceta))
+                            {
+                                <img src="~/Content/recetas/@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/comida/comida-default.png" class="imagen-receta" alt="Sin imagen" />
+                            }
+
+                            <h4 class="nombre-receta">@receta.NombreReceta</h4>
+                        </div>
+
+                        <!-- Columna 2: Ingredientes -->
+                        <div class="Ingredientes-datos">
+                            <h5>Ingredientes</h5>
+                            <ul>
+                                @{
+                                    var ingredientes = receta.Ingredientes.Split(',');
+                                    foreach (var ing in ingredientes)
+                                    {
+                                        <li>@ing.Trim()</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+
+                        <!-- Columna 3: Preparación -->
+                        <div class="Preparacion-datos">
+                            <h5>Preparación</h5>
+                            <ul>
+                                @{
+                                    var preparacion = receta.Preparacion.Split(',');
+                                    foreach (var prep in preparacion)
+                                    {
+                                        <li>@prep.Trim()</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- Likes y Valoración -->
+                    <div class="datos-usuarios">
+                        <div class="user-megustas">
+                            <form action="@Url.Action("ToggleMeGusta", "Recetas")" method="post">
+                                <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+                                <button class="btn-like" type="submit">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Like" />
+                                    @receta.MeGustaReceta Likes
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="user-valoracion">
+                            <form action="@Url.Action("CalificarReceta", "Recetas")" method="post" class="form-estrellas">
+                                <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    string clase = i <= receta.ValoracionReceta ? "llena" : "vacia";
+
+                                    <button type="submit" name="calificacion" value="@i" class="estrella-btn @clase">
+
+                                        <text>★</text>
+
+                                    </button>
+                                }
+
+                                <span class="puntuacion">@receta.ValoracionReceta.ToString("F1")/10</span>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        }
+    }
+    else
+    {
+        <div class="mensaje-vacio">
+            <h2>😕 No hay recetas disponibles</h2>
+        </div>
+    }
+
+</div>
+
+@if (ViewBag.Error != null)
+{
+    <div class="error-container">
+        <p class="error-mensaje">⚠️ @ViewBag.Error</p>
+    </div>
+}

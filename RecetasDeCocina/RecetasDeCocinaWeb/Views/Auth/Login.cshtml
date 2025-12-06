@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Styles.css" />
+}
+
+<div class="titulo_bienvenido-Registro">
+
+    <p class="mensaje-registro">Bienvenido de Vuelta 🍳</p>
+
+</div>
+
+<div class="formulario">
+
+    <form action="@Url.Action("Login", "Auth")" method="post">
+
+        <div class="form-group">
+            <input type="text" id="usuarioLogin" name="Usuario" placeholder="Usuario" required>
+        </div>
+
+        <div class="form-group">
+            <input type="password" id="contrasenaLogin" name="Contrasena" placeholder="Contraseña" required>
+        </div>
+
+        <button type="submit">Iniciar Sesión</button>
+
+        <button type="button" onclick="location.href='@Url.Action("Registro", "Auth")'">Registrarse</button>
+    </form>
+
+
+
+</div>
+
+
+<div class="mensaje-error">
+    @if (ViewBag.Error != null)
+    {
+        <span class="span-login">@ViewBag.Error</span>
+    }
+</div>

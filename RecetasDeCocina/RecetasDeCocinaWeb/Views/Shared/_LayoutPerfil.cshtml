@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alice&display=swap">
+    <link rel="stylesheet" href="~/Content/Styles_Profile.css" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <!-- ========== NAVBAR PRINCIPAL ========== -->
+    <nav class="navbar1">
+        <ul class="navbar-list">
+            <li><img src="~/Content/logo-default/logo.png" alt="Logo" /></li>
+            <li><a href="@Url.Action("Index", "Recetas")">Inicio</a></li>
+            <li><a href="@Url.Action("Populares", "Recetas")">Más populares</a></li>
+            <li><a href="@Url.Action("Calificadas", "Recetas")">Más calificadas</a></li>
+            <li>
+                <div class="formulario-group-nav">
+                    <form action="@Url.Action("BuscarUsuarios", "Usuario")" method="get">
+                        <input type="text" name="query" placeholder="Buscar Usuario..." required />
+                        <button type="submit"><img src="~/Content/Botones/buscar.png" alt="Buscar" /></button>
+                    </form>
+                </div>
+            </li>
+            <li><a href="@Url.Action("MiPerfil", "Usuario")">Mi perfil</a></li>
+            <li><a href="@Url.Action("Logout", "Auth")">Salir</a></li>
+        </ul>
+    </nav>
+
+    <div class="dividir">
+
+        <!-- ========== PANEL LATERAL PERFIL FIJO ========== -->
+        <div class="user-profile">
+            @if (!string.IsNullOrEmpty(Model?.Perfil?.ImagenUsuario))
+            {
+                <img src="~/Content/usuarios/@Model.Perfil.ImagenUsuario" class="avatar" alt="@Model.Perfil.Usuario" />
+            }
+            else
+            {
+                <img src="~/Content/logo-default/logo.png" class="avatar" alt="Default" />
+            }
+            <h2 class="profile-name">@Model.Perfil.Usuario</h2>
+            <div class="profile-stats">
+                <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Like" />
+                <span>@Model.Perfil.TotalMeGusta Likes</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/2441/2441712.png" alt="Valoración" />
+                <span>@Model.Perfil.PromedioValoracion.ToString("0.00") Valoración</span>
+            </div>
+        </div>
+
+
+        <div class="content">
+            <!-- ========== CONTENIDO PRINCIPAL PERFIL ========== -->
+            <div class="datos-profile-performence">
+                <!-- ========== BARRA SECUNDARIA PERFIL ARRIBA DE LAS RECETAS ========== -->
+                <div class="nvar-crud-datos-from-profile">
+                    <ul class="navbar-Crud">
+                        <li>
+                            <a href="@Url.Action("Miperfil", "Usuario")">
+                                <img src="~/Content/Botones/recetas.png" alt="Recetas" class="icono-navbar-crud" />
+                                Mis Recetas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AgregarReceta", "Usuario")">
+                                <img src="~/Content/Botones/agregar.png" alt="Agregar" class="icono-navbar-crud" />
+                                Agregar Receta
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("EliminarReceta", "Usuario")">
+                                <img src="~/Content/Botones/eliminar.png" alt="Eliminar" class="icono-navbar-crud" />
+                                Eliminar Receta
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("EditarReceta", "Usuario")">
+                                <img src="~/Content/Botones/actualizar.png" alt="Editar" class="icono-navbar-crud" />
+                                Editar Receta
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- ========== AQUÍ VA EL CONTENIDO PRINCIPAL (ej: recetas) ========== -->
+
+                @RenderBody()
+            </div>
+
+
+        </div>
+    </div>
+        
+
+</body>
+</html>

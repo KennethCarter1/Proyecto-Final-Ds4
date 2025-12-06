@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Registrarse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Styles.css" />
+}
+
+<div class="titulo_bienvenido-Registro">
+    <p class="mensaje-registro">Bienvenido a Recetas de Cocina 🧑‍🍳</p>
+</div>
+
+<div class="formulario">
+    <form action="@Url.Action("Registro", "Auth")" method="post">
+        <div class="form-group">
+            <input type="text" id="usuarioRegistro" name="Usuario" placeholder="Usuario" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="contrasenaRegistro" name="Contrasena" placeholder="Contraseña" required>
+        </div>
+
+        <input type="hidden" name="ImagenUsuario" value="">
+
+        <button type="submit">Registrarse</button>
+        <button type="button" onclick="location.href='@Url.Action("Login", "Auth")'">Regresar</button>
+    </form>
+</div>
+
+<div class="mensaje-error">
+    @if (ViewBag.Error != null)
+    {
+        <span class="span-login">@ViewBag.Error</span>
+    }
+</div>

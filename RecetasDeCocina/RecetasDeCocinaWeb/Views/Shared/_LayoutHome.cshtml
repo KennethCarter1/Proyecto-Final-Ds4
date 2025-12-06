@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alice&display=swap">
+    <title>@ViewBag.Title</title>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="navbar-list">
+
+            <li>
+                <img src="~/Content/logo-default/logo.png" alt="Logo" />
+            </li>
+
+
+            <li>
+                <a href="@Url.Action("Index", "Recetas")">Inicio</a>
+            </li>
+
+
+            <li>
+                <a href="@Url.Action("Populares", "Recetas")">Más populares</a>
+            </li>
+
+
+            <li>
+                <a href="@Url.Action("Calificadas", "Recetas")">Más calificadas</a>
+            </li>
+
+
+            <li>
+                <div class="formulario-group-nav">
+
+                    <form action="@Url.Action("BuscarUsuarios", "Usuario")" method="get">
+                        <input type="text" name="query" placeholder="Buscar Usuario..." required />
+                        <button type="submit">
+                            <img src="~/Content/Botones/buscar.png" alt="Buscar" />
+                        </button>
+                    </form>
+                </div>
+            </li>
+
+
+            <li>
+                <a href="@Url.Action("MiPerfil", "Usuario")">Mi perfil</a>
+            </li>
+
+
+            <li>
+                <a href="@Url.Action("Logout", "Auth")">Salir</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content">
+
+        <div class="buscador-recetas-defualt">
+            <div class="formulario-group-nav">
+
+                <form action="@Url.Action("BuscarReceta", "Receta")" method="get">
+                    <input type="text" name="query" placeholder="Buscar Receta..." required />
+                    <button type="submit">
+                        <img src="~/Content/Botones/buscar.png" alt="Buscar" />
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <main>
+            
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <p>Universidad Tecnologica de Panama | Proyecto Final de Desarrollo de Software IV</p>
+    </footer>
+
+</body>
+</html>
