@@ -148,7 +148,6 @@
     <Content Include="Content\Styles_AgregarReceta.css" />
     <Content Include="Content\Styles_Home.css" />
     <Content Include="Content\Styles_Profile.css" />
-    <Content Include="Content\Style_User.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

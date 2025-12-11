@@ -1,6 +1,51 @@
 ﻿
 @{
     ViewBag.Title = "Pagina API";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/Styles.css" />
+
 }
 
 
+<div class="contenedor-central">
+    <h1>API FUNCIONANDO</h1>
+    <div class="fila-endpoints">
+        <div class="columna-get">
+            <span class="cabecera-endpoint">GET</span>
+            <ul class="lista-endpoint">
+                <li>ObtenerRecetas</li>
+                <li>ObtenerRecetasMasMeGusta</li>
+                <li>ObtenerRecetasMejorCalificacion</li>
+                <li>BuscarRecetasPorNombre</li>
+                <li>ObtenerPerfilUsuario</li>
+                <li>BuscarUsuariosPorNombre</li>
+                <li>ObtenerRecetasPorUsuario</li>
+                <li>ObtenerRecetaPorId</li>
+            </ul>
+        </div>
+        <div class="columna-post">
+            <span class="cabecera-endpoint">POST</span>
+            <ul class="lista-endpoint">
+                <li>IniciarSesion</li>
+                <li>RegistrarUsuario</li>
+                <li>AgregarReceta</li>
+                <li>ToggleMeGusta</li>
+                <li>CalificarReceta</li>
+            </ul>
+        </div>
+        <div class="columna-put">
+            <span class="cabecera-endpoint">PUT🔒</span>
+            <ul class="lista-endpoint">
+                <li>ModificarReceta</li>
+            </ul>
+        </div>
+        <div class="columna-delete">
+            <span class="cabecera-endpoint">DELETE</span>
+            <ul class="lista-endpoint">
+                <li>EliminarReceta</li>
+            </ul>
+        </div>
+    </div>
+</div>

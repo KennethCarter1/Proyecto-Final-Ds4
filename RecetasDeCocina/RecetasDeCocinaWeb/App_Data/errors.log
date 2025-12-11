@@ -223,3 +223,6 @@ System.Web.HttpException: A public action method 'AgregarReceta' was not found o
 -----
 2025-12-11T01:56:25.9275341Z | Application_Start
 Application started successfully.
+-----
+2025-12-11T03:20:59.8628695Z | Application_Start
+Application started successfully.
