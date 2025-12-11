@@ -11,13 +11,22 @@
     <!-- ========== NAVBAR PRINCIPAL ========== -->
     <nav class="navbar1">
         <ul class="navbar-list">
-            <li><img src="~/Content/logo-default/logo.png" alt="Logo" /></li>
+            <li>
+                @if (!string.IsNullOrEmpty(Model?.Perfil?.ImagenUsuario))
+                {
+                    <img src="@Url.Content(Model.Perfil.ImagenUsuario)" class="avatar" alt="@Model.Perfil.Usuario" />
+                }
+                else
+                {
+                    <img src="~/Content/logo-default/logo.png" class="avatar" alt="Default" />
+                }
+            </li>
             <li><a href="@Url.Action("Index", "Recetas")">Inicio</a></li>
             <li><a href="@Url.Action("Populares", "Recetas")">Más populares</a></li>
             <li><a href="@Url.Action("Calificadas", "Recetas")">Más calificadas</a></li>
             <li>
                 <div class="formulario-group-nav">
-                    <form action="@Url.Action("BuscarUsuarios", "Usuario")" method="get">
+                    <form action="@Url.Action("UsuarioBusqueda", "Usuario")" method="get">
                         <input type="text" name="query" placeholder="Buscar Usuario..." required />
                         <button type="submit"><img src="~/Content/Botones/buscar.png" alt="Buscar" /></button>
                     </form>
@@ -34,7 +43,7 @@
         <div class="user-profile">
             @if (!string.IsNullOrEmpty(Model?.Perfil?.ImagenUsuario))
             {
-                <img src="~/Content/usuarios/@Model.Perfil.ImagenUsuario" class="avatar" alt="@Model.Perfil.Usuario" />
+                <img src="@Url.Content(Model.Perfil.ImagenUsuario)" class="avatar" alt="@Model.Perfil.Usuario" />
             }
             else
             {
@@ -50,46 +59,14 @@
         </div>
 
 
-        <div class="content">
-            <!-- ========== CONTENIDO PRINCIPAL PERFIL ========== -->
-            <div class="datos-profile-performence">
-                <!-- ========== BARRA SECUNDARIA PERFIL ARRIBA DE LAS RECETAS ========== -->
-                <div class="nvar-crud-datos-from-profile">
-                    <ul class="navbar-Crud">
-                        <li>
-                            <a href="@Url.Action("Miperfil", "Usuario")">
-                                <img src="~/Content/Botones/recetas.png" alt="Recetas" class="icono-navbar-crud" />
-                                Mis Recetas
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("AgregarReceta", "Usuario")">
-                                <img src="~/Content/Botones/agregar.png" alt="Agregar" class="icono-navbar-crud" />
-                                Agregar Receta
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("EliminarReceta", "Usuario")">
-                                <img src="~/Content/Botones/eliminar.png" alt="Eliminar" class="icono-navbar-crud" />
-                                Eliminar Receta
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("EditarReceta", "Usuario")">
-                                <img src="~/Content/Botones/actualizar.png" alt="Editar" class="icono-navbar-crud" />
-                                Editar Receta
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- ========== AQUÍ VA EL CONTENIDO PRINCIPAL (ej: recetas) ========== -->
+
+             
 
                 @RenderBody()
-            </div>
+
 
 
         </div>
-    </div>
         
 
 </body>

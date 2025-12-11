@@ -3,18 +3,35 @@
 @{
     ViewBag.Title = "Home - Recetas";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    var busqueda = Request.QueryString["query"];
+    bool esBusqueda = !string.IsNullOrWhiteSpace(busqueda);
 }
 
 @section styles {
     <link rel="stylesheet" href="~/Content/Styles_Home.css" />
 }
 
+<div class="buscador-recetas-defualt">
+    <div class="formulario-group-nav">
+        <form action="@Url.Action("Index", "Recetas")" method="get">
+            <input type="text" name="query" placeholder="Buscar Receta..." value="@busqueda" required />
+            <button type="submit">
+                <img src="~/Content/Botones/buscar.png" alt="Buscar" />
+            </button>
+        </form>
+    </div>
+</div>
+
 <div class="contenedor-recetas-all">
-
-   
-
     @if (Model != null && Model.Count > 0)
     {
+        if (esBusqueda)
+        {
+            <div class="resultado-busqueda">
+                <h3>Resultados para <strong>@busqueda</strong> </h3>
+            </div>
+            
+        }
         foreach (var receta in Model)
         {
             <div class="contenedor-datos-default">
@@ -22,13 +39,11 @@
                 <div class="contenedor-datos">
 
                     <div class="fila-datos">
-
-
                         <div class="principal-users">
                             <div class="user">
                                 @if (!string.IsNullOrEmpty(receta.ImagenUsuario))
                                 {
-                                    <img src="~/Content/usuarios/@receta.ImagenUsuario" class="logo-usuario" alt="@receta.NombreUsuario" />
+                                    <img src="@receta.ImagenUsuario" class="logo-usuario" alt="@receta.NombreUsuario" />
                                 }
                                 else
                                 {
@@ -39,7 +54,7 @@
 
                             @if (!string.IsNullOrEmpty(receta.ImagenReceta))
                             {
-                                <img src="~/Content/recetas/@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
+                                <img src="@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
                             }
                             else
                             {
@@ -100,11 +115,8 @@
                                 @for (int i = 1; i <= 10; i++)
                                 {
                                     string clase = i <= receta.ValoracionReceta ? "llena" : "vacia";
-
                                     <button type="submit" name="calificacion" value="@i" class="estrella-btn @clase">
-
                                         <text>★</text>
-
                                     </button>
                                 }
 
@@ -112,20 +124,24 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         }
+    }
+    else if (esBusqueda)
+    {
+        <div class="mensaje-vacio">
+            <h2> No se encontraron recetas para <strong>@busqueda</strong></h2>
+            <p>Prueba con otro nombre o palabra clave.</p>
+        </div>
     }
     else
     {
         <div class="mensaje-vacio">
-            <h2>😕 No hay recetas disponibles</h2>
+            <h2> No hay recetas disponibles</h2>
             <p>Sé el primero en publicar una receta</p>
         </div>
     }
-
 </div>
 
 @if (ViewBag.Error != null)

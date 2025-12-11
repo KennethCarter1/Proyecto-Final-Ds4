@@ -1,0 +1,88 @@
+﻿.form-agregar-receta {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    border-radius: 12px;
+    display: flex;
+    gap: 42px;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background: #d0e8f2;
+}
+
+.form-col {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-agregar-receta label {
+    font-size: 1.32rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+}
+
+.input-agregar,
+.form-agregar-receta input[type="file"] {
+    width: 100%;
+    font-size: 1.15rem;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 2px solid black;
+    background: #f6f9fc;
+}
+
+    .input-agregar:focus {
+        border: 2px solid black;
+        outline: none;
+    }
+
+
+.form-agregar-receta textarea.textarea-agregar {
+    width: 100%;
+    min-height: 120px;
+    font-size: 1.16rem;
+    padding: 13px;
+    border-radius: 8px;
+    border: 2px solid black;
+    background: #f6f9fc;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+}
+
+.span-ayuda {
+    color: #e11919;
+    font-size: 1.10rem;
+    margin-bottom: 8px;
+    width: 100%;
+    display: block;
+}
+
+.btn-agregar,
+.btn-volver {
+    margin-top: 30px;
+    padding: 17px 40px;
+    font-size: 1.32rem;
+    font-weight: bold;
+    background: #faf3f3;
+    text-align: center;
+    color: black;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 100%;
+    align-self: center;
+    text-decoration: none;
+    border: 2px solid black; /* Borde SIEMPRE visible */
+    box-sizing: border-box; /* El ancho incluye el borde */
+}
+
+    .btn-agregar:hover,
+    .btn-volver:hover {
+        background: #f3dcdc;
+    }

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alice&display=swap">
+    <link rel="stylesheet" href="~/Content/Styles_Profile.css" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <!-- ========== NAVBAR PRINCIPAL ========== -->
+    <!-- Elimina el bloque del avatar y solo deja la barra -->
+    <nav class="navbar1">
+        <ul class="navbar-list">
+            <li><a href="@Url.Action("Index", "Recetas")">Inicio</a></li>
+            <li><a href="@Url.Action("Populares", "Recetas")">Más populares</a></li>
+            <li><a href="@Url.Action("Calificadas", "Recetas")">Más calificadas</a></li>
+            <li>
+                <div class="formulario-group-nav">
+                    <form action="@Url.Action("UsuarioBusqueda", "Usuario")" method="get">
+                        <input type="text" name="query" placeholder="Buscar Usuario..." required />
+                        <button type="submit"><img src="~/Content/Botones/buscar.png" alt="Buscar" /></button>
+                    </form>
+                </div>
+            </li>
+            <li><a href="@Url.Action("MiPerfil", "Usuario")">Mi perfil</a></li>
+            <li><a href="@Url.Action("Logout", "Auth")">Salir</a></li>
+        </ul>
+    </nav>
+
+    <div class="agregar-la-receta">
+        @RenderBody()
+    </div>
+
+
+</body>
+</html>

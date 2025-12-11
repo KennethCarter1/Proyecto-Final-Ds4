@@ -11,9 +11,11 @@ namespace RecetasDeCocinaWeb.Models
         public double ValoracionReceta { get; set; }
         public int MeGustaReceta { get; set; }
         public int UsuarioID { get; set; }
-        public string ImagenReceta { get; set; }
+
         public string NombreUsuario { get; set; }
         public string ImagenUsuario { get; set; }
+
+        public string ImagenReceta { get; set; }
     }
 
     public class ListaRecetas

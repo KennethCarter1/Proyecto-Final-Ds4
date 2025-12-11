@@ -125,10 +125,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AgregarReceta.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\PerfilUsuarioViewModel.cs" />
     <Compile Include="Models\RecetaRespuesta.cs" />
     <Compile Include="Models\Registro.cs" />
+    <Compile Include="Models\Respuestas\BusquedaUsuariosRespuesta.cs" />
+    <Compile Include="Models\Respuestas\RecetaDetalleRespuesta.cs" />
+    <Compile Include="Models\Respuestas\UsuarioBusquedaRespuesta.cs" />
+    <Compile Include="Models\UsuarioRespuesta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,8 +145,10 @@
     <Content Include="Content\comida\comida-default.png" />
     <Content Include="Content\logo-default\logo.png" />
     <Content Include="Content\Styles.css" />
+    <Content Include="Content\Styles_AgregarReceta.css" />
     <Content Include="Content\Styles_Home.css" />
     <Content Include="Content\Styles_Profile.css" />
+    <Content Include="Content\Style_User.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -157,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -168,6 +176,11 @@
     <Content Include="Views\Recetas\Calificadas.cshtml" />
     <Content Include="Views\Usuario\MiPerfil.cshtml" />
     <Content Include="Views\Shared\_LayoutPerfil.cshtml" />
+    <Content Include="Views\Usuario\UsuarioBusqueda.cshtml" />
+    <Content Include="Views\Shared\_LayoutPerfilBusqueda.cshtml" />
+    <Content Include="Views\_ViewImports.cshtml" />
+    <Content Include="Views\Usuario\AgregarReceta.cshtml" />
+    <Content Include="Views\Shared\_LayoutAgregar.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

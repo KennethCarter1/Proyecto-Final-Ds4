@@ -109,13 +109,22 @@ namespace RecetasDeCocina.Controllers.Usuarios
                         while (reader.Read())
                         {
                             int usuarioID = reader.GetInt32(reader.GetOrdinal("UsuarioID"));
+                            string usuario = !reader.IsDBNull(reader.GetOrdinal("Usuario"))
+                                ? reader.GetString(reader.GetOrdinal("Usuario")) : "";
+                            string imagenUsuario = !reader.IsDBNull(reader.GetOrdinal("ImagenUsuario"))
+                                ? reader.GetString(reader.GetOrdinal("ImagenUsuario")) : "";
+                            int totalMeGusta = !reader.IsDBNull(reader.GetOrdinal("TotalMeGusta"))
+                                ? reader.GetInt32(reader.GetOrdinal("TotalMeGusta")) : 0;
+                            double promedioValoracion = !reader.IsDBNull(reader.GetOrdinal("PromedioValoracion"))
+                                ? reader.GetDouble(reader.GetOrdinal("PromedioValoracion")) : 0.0;
+
                             usuariosDict[usuarioID] = new UsuarioBusquedaRespuesta
                             {
                                 UsuarioID = usuarioID,
-                                Usuario = reader.GetString(reader.GetOrdinal("Usuario")),
-                                ImagenUsuario = reader.GetString(reader.GetOrdinal("ImagenUsuario")),
-                                TotalMeGusta = reader.GetInt32(reader.GetOrdinal("TotalMeGusta")),
-                                PromedioValoracion = reader.GetDouble(reader.GetOrdinal("PromedioValoracion")),
+                                Usuario = usuario,
+                                ImagenUsuario = imagenUsuario,
+                                TotalMeGusta = totalMeGusta,
+                                PromedioValoracion = promedioValoracion,
                                 Recetas = new List<RecetaDetalleRespuesta>()
                             };
                         }
@@ -127,17 +136,32 @@ namespace RecetasDeCocina.Controllers.Usuarios
                             {
                                 int usuarioID = reader.GetInt32(reader.GetOrdinal("UsuarioID"));
 
+                                string nombreReceta = !reader.IsDBNull(reader.GetOrdinal("NombreReceta"))
+                                    ? reader.GetString(reader.GetOrdinal("NombreReceta")) : "";
+                                string ingredientes = !reader.IsDBNull(reader.GetOrdinal("Ingredientes"))
+                                    ? reader.GetString(reader.GetOrdinal("Ingredientes")) : "";
+                                string preparacion = !reader.IsDBNull(reader.GetOrdinal("Preparacion"))
+                                    ? reader.GetString(reader.GetOrdinal("Preparacion")) : "";
+                                string imagenReceta = !reader.IsDBNull(reader.GetOrdinal("ImagenReceta"))
+                                    ? reader.GetString(reader.GetOrdinal("ImagenReceta")) : "";
+                                int recetaID = !reader.IsDBNull(reader.GetOrdinal("RecetaID"))
+                                    ? reader.GetInt32(reader.GetOrdinal("RecetaID")) : 0;
+                                int meGustaReceta = !reader.IsDBNull(reader.GetOrdinal("MeGustaReceta"))
+                                    ? reader.GetInt32(reader.GetOrdinal("MeGustaReceta")) : 0;
+                                double valoracionReceta = !reader.IsDBNull(reader.GetOrdinal("ValoracionReceta"))
+                                    ? reader.GetDouble(reader.GetOrdinal("ValoracionReceta")) : 0.0;
+
                                 if (usuariosDict.ContainsKey(usuarioID))
                                 {
                                     usuariosDict[usuarioID].Recetas.Add(new RecetaDetalleRespuesta
                                     {
-                                        RecetaID = reader.GetInt32(reader.GetOrdinal("RecetaID")),
-                                        NombreReceta = reader.GetString(reader.GetOrdinal("NombreReceta")),
-                                        Ingredientes = reader.GetString(reader.GetOrdinal("Ingredientes")),
-                                        Preparacion = reader.GetString(reader.GetOrdinal("Preparacion")),
-                                        ImagenReceta = reader.GetString(reader.GetOrdinal("ImagenReceta")),
-                                        MeGustaReceta = reader.GetInt32(reader.GetOrdinal("MeGustaReceta")),
-                                        ValoracionReceta = reader.GetDouble(reader.GetOrdinal("ValoracionReceta"))
+                                        RecetaID = recetaID,
+                                        NombreReceta = nombreReceta,
+                                        Ingredientes = ingredientes,
+                                        Preparacion = preparacion,
+                                        ImagenReceta = imagenReceta,
+                                        MeGustaReceta = meGustaReceta,
+                                        ValoracionReceta = valoracionReceta
                                     });
                                 }
                             }

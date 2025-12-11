@@ -257,6 +257,7 @@ input:focus {
 .datos-usuarios {
     display: flex;
     flex-direction: row;
+
     align-items: center;
     gap: 20px;
     margin-top: 20px;
@@ -401,4 +402,10 @@ footer {
         font-size: 25px;
     }
 
+.resultado-busqueda {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    font-size: 20px;
+}
 

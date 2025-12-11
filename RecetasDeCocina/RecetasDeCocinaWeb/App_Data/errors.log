@@ -1,0 +1,225 @@
+-----
+2025-12-10T01:53:37.9643107Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T01:55:44.8221590Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T02:00:43.4163369Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T02:03:22.8811815Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T02:16:31.8846480Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T02:19:40.2338006Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:19:28.5927217Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:24:43.4132161Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:26:53.9312738Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:35:59.0174373Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:40:06.1056119Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:41:42.7531357Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:42:34.1014066Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:42:53.1245681Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:43:37.7421864Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T12:47:26.8304443Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:08:17.7451618Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:08:45.6272215Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:09:35.2504277Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:11:03.4763846Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:15:14.8917892Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:16:54.0464318Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T13:21:55.5463012Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T15:50:46.1843692Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T15:58:29.1751434Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T15:59:55.5993996Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:01:45.3815545Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:07:25.4239772Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:12:38.0321027Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:16:45.2505387Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:18:53.6702620Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:22:00.0606129Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:25:10.3897663Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:27:02.4579114Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:27:18.4186701Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:28:01.9585894Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:28:40.3259845Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:38:16.1128604Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:38:45.6896042Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:39:01.8415740Z | Application_Error
+System.Web.HttpException: A public action method 'AgregarReceta' was not found on controller 'RecetasDeCocinaWeb.Controllers.UsuarioController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+-----
+2025-12-10T16:39:53.5874786Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T16:40:37.1329837Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:14:48.9881411Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:17:01.3010211Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:25:10.8479421Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:32:11.3079631Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:35:47.4042156Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:38:26.8298025Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T18:40:24.2016123Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T21:00:21.0589470Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T21:01:08.4265760Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T21:03:20.7128217Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T21:06:27.6356274Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T21:07:25.8281894Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:20:03.0188640Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:33:58.3761249Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:39:33.3311662Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:42:22.3637957Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:49:28.7255533Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:51:13.0796531Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:52:34.7950332Z | Application_Start
+Application started successfully.
+-----
+2025-12-10T23:53:01.5761015Z | Application_Start
+Application started successfully.
+-----
+2025-12-11T00:11:03.3803491Z | Application_Start
+Application started successfully.
+-----
+2025-12-11T01:04:55.6658514Z | Application_Start
+Application started successfully.
+-----
+2025-12-11T01:54:20.6657148Z | Application_Start
+Application started successfully.
+-----
+2025-12-11T01:54:40.9226379Z | Application_Error
+System.Web.HttpException: A public action method 'AgregarReceta' was not found on controller 'RecetasDeCocinaWeb.Controllers.UsuarioController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+-----
+2025-12-11T01:56:25.9275341Z | Application_Start
+Application started successfully.

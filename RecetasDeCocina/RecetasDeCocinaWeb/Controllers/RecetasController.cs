@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RecetasDeCocinaWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,41 +17,49 @@ namespace RecetasDeCocinaWeb.Controllers
         private string apiBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"];
 
         // GET: Recetas
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string query)
         {
             if (Session["UsuarioID"] == null)
             {
                 return RedirectToAction("Login", "Auth");
             }
 
+            List<RecetaRespuesta> recetas = new List<RecetaRespuesta>();
+
             try
             {
-                using(var client= new HttpClient())
+                using (var client = new HttpClient())
                 {
-                    var response = await client.GetAsync($"{apiBaseUrl}recetas");
+                    string endpoint = string.IsNullOrWhiteSpace(query) ?
+                        $"{apiBaseUrl}recetas" :
+                        $"{apiBaseUrl}recetas/buscar?nombre={Uri.EscapeDataString(query)}";
 
+                    var response = await client.GetAsync(endpoint);
                     if (response.IsSuccessStatusCode)
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         var datos = JsonConvert.DeserializeObject<Models.ListaRecetas>(result);
 
-                        return View(datos.Recetas);
+                        recetas = datos.Recetas ?? new List<RecetaRespuesta>();
                     }
                     else
                     {
                         ViewBag.Error = "No se pudieron cargar las recetas";
-                        return View();
                     }
-
-
                 }
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Error al conectar con el servidor: " + ex.Message;
-                return View();
             }
 
+            foreach (var r in recetas)
+            {
+                System.Diagnostics.Debug.WriteLine("Imagen: " + r.ImagenReceta);
+            }
+
+
+            return View(recetas);
         }
 
 
@@ -231,6 +240,25 @@ namespace RecetasDeCocinaWeb.Controllers
                 ViewBag.Error = "Error al conectar con el servidor: " + ex.Message;
                 return View();
             }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EliminarReceta(int recetaId, string returnUrl)
+        {
+
+            var apiBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"].TrimEnd('/');
+            var endpoint = $"{apiBaseUrl}/recetas/{recetaId}";
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.DeleteAsync(endpoint);
+                var json = await response.Content.ReadAsStringAsync();
+
+
+            }
+
+
+            return Redirect(returnUrl ?? Url.Action("Miperfil", "Usuario"));
         }
 
     }

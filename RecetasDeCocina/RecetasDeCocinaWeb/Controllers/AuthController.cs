@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RecetasDeCocinaWeb.Models;
+using System;
 using System.Configuration;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using RecetasDeCocinaWeb.Models;
+using System.Diagnostics;
 
 namespace RecetasDeCocinaWeb.Controllers
 {
@@ -64,38 +67,73 @@ namespace RecetasDeCocinaWeb.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public async Task<ActionResult> Registro(Registro model)
+        public async Task<ActionResult> Registro(Registro model, HttpPostedFileBase ImagenUsuario)
         {
-            using (var client = new HttpClient())
+            try
             {
-                var json = JsonConvert.SerializeObject(model);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var carpetaDestino = Server.MapPath("~/Content/Usuarios");
+                if (!Directory.Exists(carpetaDestino))
+                    Directory.CreateDirectory(carpetaDestino);
 
-                var response = await client.PostAsync(apiBaseUrl + "auth/registro", content);
-
-                if (response.IsSuccessStatusCode)
+                if (ImagenUsuario != null && ImagenUsuario.ContentLength > 0)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    var respuesta = JsonConvert.DeserializeObject<dynamic>(result);
+                    // Log file info
+                    Trace.TraceInformation($"Uploading file: Name={ImagenUsuario.FileName}, Length={ImagenUsuario.ContentLength}");
 
-                    
-                    if (respuesta.Exito == true)
+                    var nombreArchivo = Guid.NewGuid().ToString("N") + Path.GetExtension(ImagenUsuario.FileName);
+                    var rutaFisica = Path.Combine(carpetaDestino, nombreArchivo);
+
+                    try
                     {
-                        return RedirectToAction("Login");
+                        ImagenUsuario.SaveAs(rutaFisica);
+                        model.ImagenUsuario = "/Content/Usuarios/" + nombreArchivo;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        ViewBag.Error = (string)respuesta.Mensaje;
+                        // Log and return friendly error instead of crashing
+                        Trace.TraceError("Error saving uploaded file: " + ex);
+                        ViewBag.Error = "No se pudo guardar la imagen. Verifique permisos de la carpeta y el tamaño del archivo.";
                         return View(model);
                     }
                 }
                 else
                 {
-                    ViewBag.Error = "Error al conectar con el servidor";
-                    return View(model);
+                    model.ImagenUsuario = "/Content/Usuarios/default.png";
                 }
+
+                using (var client = new HttpClient())
+                {
+                    var json = JsonConvert.SerializeObject(model);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(apiBaseUrl + "auth/registro", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+                        var respuesta = JsonConvert.DeserializeObject<dynamic>(result);
+
+                        if (respuesta.Exito == true)
+                            return RedirectToAction("Login");
+                        else
+                        {
+                            ViewBag.Error = (string)respuesta.Mensaje;
+                            return View(model);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Error al conectar con el servidor";
+                        return View(model);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // ATRAPA cualquier excepción del método.
+                Trace.TraceError("Registro error: " + ex);
+                ViewBag.Error = "Error en el registro: " + ex.Message;
+                return View(model);
             }
         }
 

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "AGREGAR RECETA";
+    Layout = "~/Views/Shared/_LayoutAgregar.cshtml";
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Styles_Home.css" />
+    <link rel="stylesheet" href="~/Content/Styles_Profile.css" />
+    <link rel="stylesheet" href="~/Content/Styles_AgregarReceta.css" />
+
+}
+
+
+
+<form action="@Url.Action("AgregarReceta", "Usuario")" method="post" enctype="multipart/form-data" class="form-agregar-receta">
+
+    <div class="form-col">
+        <label for="NombreReceta"><strong>TÍTULO DE LA RECETA</strong></label>
+        <input type="text" id="NombreReceta" name="NombreReceta" required class="input-agregar" />
+
+        <label for="Imagen"><strong>IMAGEN DE LA RECETA</strong></label>
+        <input type="file" id="Imagen" name="ImagenUsuario" accept=".png,.jpg,.jpeg" />
+    </div>
+
+    <div class="form-col">
+        <label for="Ingredientes"><strong>INGREDIENTES</strong></label>
+        <textarea id="Ingredientes" name="Ingredientes" required class="textarea-agregar"></textarea>
+        <span class="span-ayuda">
+            ES PREFERIBLE COLOCAR LA SEPARACIÓN POR <b>COMA (,)</b>
+        </span>
+
+        <label for="Preparacion"><strong>PREPARACIÓN</strong></label>
+        <textarea id="Preparacion" name="Preparacion" required class="textarea-agregar"></textarea>
+        <span class="span-ayuda">
+            ES PREFERIBLE COLOCAR LA SEPARACIÓN POR <b>COMA (,)</b>
+        </span>
+    </div>
+
+    <button type="submit" class="btn-agregar">GUARDAR RECETA</button>
+    <a href="@Url.Action("MiPerfil", "Usuario")" class="btn-volver">VOLVER A PERFIL</a>
+
+
+</form>

@@ -15,5 +15,6 @@ namespace RecetasDeCocina.Models.Respuestas
         public int MeGustaReceta { get; set; }
         public string NombreUsuario { get; set; }
         public string ImagenUsuario { get; set; }
+        public string ImagenReceta { get; set; }
     }
 }

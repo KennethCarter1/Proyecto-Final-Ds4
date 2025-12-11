@@ -1,0 +1,121 @@
+﻿@model RecetasDeCocinaWeb.Models.Respuestas.BusquedaUsuariosRespuesta
+
+@{
+    ViewBag.Title = "Perfil de Usuario";
+    Layout = "~/Views/Shared/_LayoutPerfilBusqueda.cshtml"; 
+    var usuario = Model.Usuarios != null && Model.Usuarios.Any() ? Model.Usuarios.FirstOrDefault() : null;
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/Content/Styles_Home.css" />
+    <link rel="stylesheet" href="~/Content/Styles_Profile.css" />
+}
+
+<div class="content">
+    <div class="datos-profile-performence">
+        <div class="contenedor-recetas-all">
+            @if (usuario != null && usuario.Recetas != null && usuario.Recetas.Count > 0)
+            {
+                foreach (var receta in usuario.Recetas)
+                {
+                    <div class="contenedor-datos-default">
+                        <div class="contenedor-datos">
+                            <div class="fila-datos">
+                                <div class="principal-users">
+                                    <div class="user">
+                                        @if (!string.IsNullOrEmpty(usuario.ImagenUsuario))
+                                        {
+                                            <img src="@usuario.ImagenUsuario" class="logo-usuario" alt="@usuario.Usuario" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/logo-default/logo.png" class="logo-usuario" alt="Default" />
+                                        }
+                                        <span class="nombre-usuario">@usuario.Usuario</span>
+                                    </div>
+                                    @if (!string.IsNullOrEmpty(receta.ImagenReceta))
+                                    {
+                                        <img src="@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/comida/comida-default.png" class="imagen-receta" alt="Sin imagen" />
+                                    }
+                                    <h4 class="nombre-receta">@receta.NombreReceta</h4>
+                                </div>
+                                <div class="Ingredientes-datos">
+                                    <h5>Ingredientes</h5>
+                                    <ul>
+                                        @{
+                                            var ingredientes = receta.Ingredientes?.Split(',');
+                                            if (ingredientes != null)
+                                            {
+                                                foreach (var ing in ingredientes)
+                                                {
+                                                    <li>@ing.Trim()</li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="Preparacion-datos">
+                                    <h5>Preparación</h5>
+                                    <ul>
+                                        @{
+                                            var pasos = receta.Preparacion?.Split(',');
+                                            if (pasos != null)
+                                            {
+                                                foreach (var paso in pasos)
+                                                {
+                                                    <li>@paso.Trim()</li>
+                                                }
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="datos-usuarios">
+                                <div class="user-megustas">
+                                    <form action="@Url.Action("ToggleMeGusta", "Recetas")" method="post">
+                                        <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                        <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+                                        <button class="btn-like" type="submit">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Like" />
+                                            @receta.MeGustaReceta Likes
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="user-valoracion">
+                                    <form action="@Url.Action("CalificarReceta", "Recetas")" method="post" class="form-estrellas">
+                                        <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                        <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+                                        @for (int i = 1; i <= 10; i++)
+                                        {
+                                            string clase = i <= receta.ValoracionReceta ? "llena" : "vacia";
+                                            <button type="submit" name="calificacion" value="@i" class="estrella-btn @clase">
+                                                <text>★</text>
+                                            </button>
+                                        }
+                                        <span class="puntuacion">@receta.ValoracionReceta.ToString("F1")/10</span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else if (usuario != null && (usuario.Recetas == null || usuario.Recetas.Count == 0))
+            {
+                <div class="mensaje-vacio">
+                    <h2>No hay recetas disponibles para este usuario</h2>
+                </div>
+            }
+            else
+            {
+                <div class="mensaje-vacio">
+                    <h2>No se encontró usuario con ese nombre</h2>
+                </div>
+            }
+        </div>
+    </div>
+</div>

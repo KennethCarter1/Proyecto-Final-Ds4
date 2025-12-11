@@ -12,107 +12,150 @@
 
 
 
+<div class="content">
+    <!-- ========== CONTENIDO PRINCIPAL PERFIL ========== -->
+    <div class="datos-profile-performence">
+        <!-- ========== BARRA SECUNDARIA PERFIL ARRIBA DE LAS RECETAS ========== -->
+        <div class="nvar-crud-datos-from-profile">
+            <ul class="navbar-Crud">
+                <li>
+                    <a href="@Url.Action("MiPerfil", "Usuario")">
+                        <img src="~/Content/Botones/recetas.png" alt="Recetas" class="icono-navbar-crud" />
+                        Mis Recetas
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("AgregarReceta", "Usuario")">
+                        <img src="~/Content/Botones/agregar.png" alt="Agregar" class="icono-navbar-crud" />
+                        Agregar Receta
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-
-
-
-    <div class="contenedor-recetas-all">
-        @if (Model.Recetas != null && Model.Recetas.Count > 0)
-        {
-            foreach (var receta in Model.Recetas)
+        <div class="contenedor-recetas-all">
+            @if (Model.Recetas != null && Model.Recetas.Count > 0)
             {
-                <div class="contenedor-datos-default">
-                    <div class="contenedor-datos">
-                        <div class="fila-datos">
+                foreach (var receta in Model.Recetas)
+                {
+                    <div class="contenedor-datos-default">
+                        <div class="contenedor-datos">
+                            <div class="fila-datos">
 
-                            <div class="principal-users">
-                                <div class="user">
-                                    @if (!string.IsNullOrEmpty(Model.Perfil.ImagenUsuario))
+                                <!-- Usuario y Receta -->
+                                <div class="principal-users">
+                                    <div class="user">
+                                        @if (!string.IsNullOrEmpty(Model.Perfil.ImagenUsuario))
+                                        {
+                                            <img src="@Model.Perfil.ImagenUsuario" class="logo-usuario" alt="@Model.Perfil.Usuario" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/logo-default/logo.png" class="logo-usuario" alt="Default" />
+                                        }
+                                        <span class="nombre-usuario">@Model.Perfil.Usuario</span>
+                                    </div>
+
+                                    @if (!string.IsNullOrEmpty(receta.ImagenReceta))
                                     {
-                                        <img src="~/Content/usuarios/@Model.Perfil.ImagenUsuario" class="logo-usuario" alt="@Model.Perfil.Usuario" />
+                                        <img src="@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
                                     }
                                     else
                                     {
-                                        <img src="~/Content/logo-default/logo.png" class="logo-usuario" alt="Default" />
+                                        <img src="~/Content/comida/comida-default.png" class="imagen-receta" alt="Sin imagen" />
                                     }
-                                    <span class="nombre-usuario">@Model.Perfil.Usuario</span>
+
+                                    <h4 class="nombre-receta">@receta.NombreReceta</h4>
                                 </div>
 
-                                @if (!string.IsNullOrEmpty(receta.ImagenReceta))
-                                {
-                                    <img src="~/Content/recetas/@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
-                                }
-                                else
-                                {
-                                    <img src="~/Content/comida/comida-default.png" class="imagen-receta" alt="Sin imagen" />
-                                }
-
-                                <h4 class="nombre-receta">@receta.NombreReceta</h4>
-                            </div>
-
-                            <div class="Ingredientes-datos">
-                                <h5>Ingredientes</h5>
-                                <ul>
-                                    @{
-                                        var ingredientes = receta.Ingredientes.Split(',');
-                                        foreach (var ing in ingredientes)
-                                        {
-                                            <li>@ing.Trim()</li>
+                                <!-- Ingredientes -->
+                                <div class="Ingredientes-datos">
+                                    <h5>Ingredientes</h5>
+                                    <ul>
+                                        @{
+                                            var ingredientes = receta.Ingredientes?.Split(',');
+                                            if (ingredientes != null)
+                                            {
+                                                foreach (var ing in ingredientes)
+                                                {
+                                                    <li>@ing.Trim()</li>
+                                                }
+                                            }
                                         }
-                                    }
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
 
-                            <div class="Preparacion-datos">
-                                <h5>Preparación</h5>
-                                <ul>
-                                    @{
-                                        var pasos = receta.Preparacion.Split(',');
-                                        foreach (var paso in pasos)
-                                        {
-                                            <li>@paso.Trim()</li>
+                                <!-- Preparación -->
+                                <div class="Preparacion-datos">
+                                    <h5>Preparación</h5>
+                                    <ul>
+                                        @{
+                                            var pasos = receta.Preparacion?.Split(',');
+                                            if (pasos != null)
+                                            {
+                                                foreach (var paso in pasos)
+                                                {
+                                                    <li>@paso.Trim()</li>
+                                                }
+                                            }
                                         }
-                                    }
-                                </ul>
-                            </div>
-                        </div>
+                                    </ul>
+                                </div>
+                            </div><!-- /.fila-datos -->
+                            <!-- Likes y Valoración -->
+                            <div class="datos-usuarios">
 
-                        <div class="datos-usuarios">
-                            <div class="user-megustas">
-                                <form action="@Url.Action("ToggleMeGusta", "Recetas")" method="post">
-                                    <input type="hidden" name="recetaId" value="@receta.RecetaID" />
-                                    <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
-                                    <button class="btn-like" type="submit">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Like" />
-                                        @receta.MeGustaReceta Likes
-                                    </button>
-                                </form>
-                            </div>
-
-                            <div class="user-valoracion">
-                                <form action="@Url.Action("CalificarReceta", "Recetas")" method="post" class="form-estrellas">
-                                    <input type="hidden" name="recetaId" value="@receta.RecetaID" />
-                                    <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
-                                    @for (int i = 1; i <= 10; i++)
-                                    {
-                                        string clase = i <= receta.ValoracionReceta ? "llena" : "vacia";
-                                        <button type="submit" name="calificacion" value="@i" class="estrella-btn @clase">
-                                            <text>★</text>
+                                <div class="user-megustas">
+                                    <form action="@Url.Action("ToggleMeGusta", "Recetas")" method="post">
+                                        <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                        <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+                                        <button class="btn-like" type="submit">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Like" />
+                                            @receta.MeGustaReceta Likes
                                         </button>
-                                    }
-                                    <span class="puntuacion">@receta.ValoracionReceta.ToString("F1")/10</span>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                    </form>
+                                </div>
+
+                                <div class="user-valoracion">
+                                    <form action="@Url.Action("CalificarReceta", "Recetas")" method="post" class="form-estrellas">
+                                        <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                        <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+                                        @for (int i = 1; i <= 10; i++)
+                                        {
+                                            string clase = i <= receta.ValoracionReceta ? "llena" : "vacia";
+                                            <button type="submit" name="calificacion" value="@i" class="estrella-btn @clase">
+                                                <text>★</text>
+                                            </button>
+                                        }
+                                        <span class="puntuacion">@receta.ValoracionReceta.ToString("F1")/10</span>
+                                    </form>
+                                </div>
+
+
+                                <div class="user-eliminar">
+                                    <form action="@Url.Action("EliminarReceta", "Recetas")" method="post">
+                                        <input type="hidden" name="recetaId" value="@receta.RecetaID" />
+                                        <input type="hidden" name="returnUrl" value="@Request.RawUrl" />
+                                        <button class="btn-eliminar" type="submit" title="Eliminar receta">
+                                            <img src="~/Content/Botones/eliminar.png" alt="Eliminar" style="width:50px; height:50px;" />
+                                            <p>Eliminar Receta</p>
+                                        </button>
+                                    </form>
+                                </div>
+
+
+                            </div><!-- /.datos-usuarios -->
+                        </div><!-- /.contenedor-datos -->
+                    </div><!-- /.contenedor-datos-default -->
+                }
+            }
+            else
+            {
+                <div class="mensaje-vacio">
+                    <h2>No hay recetas disponibles</h2>
+                    <p>Sé el primero en publicar una receta</p>
                 </div>
             }
-        }
-        else
-        {
-            <div class="mensaje-vacio">
-                <h2>😕 No hay recetas disponibles</h2>
-                <p>Sé el primero en publicar una receta</p>
-            </div>
-        }
+        </div>
     </div>
+</div>

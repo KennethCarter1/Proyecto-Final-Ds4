@@ -26,7 +26,7 @@
                             <div class="user">
                                 @if (!string.IsNullOrEmpty(receta.ImagenUsuario))
                                 {
-                                    <img src="~/Content/usuarios/@receta.ImagenUsuario" class="logo-usuario" alt="@receta.NombreUsuario" />
+                                    <img src="@receta.ImagenUsuario" class="logo-usuario" alt="@receta.NombreUsuario" />
                                 }
                                 else
                                 {
@@ -37,7 +37,7 @@
 
                             @if (!string.IsNullOrEmpty(receta.ImagenReceta))
                             {
-                                <img src="~/Content/recetas/@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
+                                <img src="@receta.ImagenReceta" class="imagen-receta" alt="@receta.NombreReceta" />
                             }
                             else
                             {

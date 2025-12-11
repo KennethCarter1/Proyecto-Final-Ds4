@@ -12,11 +12,6 @@
         <ul class="navbar-list">
 
             <li>
-                <img src="~/Content/logo-default/logo.png" alt="Logo" />
-            </li>
-
-
-            <li>
                 <a href="@Url.Action("Index", "Recetas")">Inicio</a>
             </li>
 
@@ -34,7 +29,7 @@
             <li>
                 <div class="formulario-group-nav">
 
-                    <form action="@Url.Action("BuscarUsuarios", "Usuario")" method="get">
+                    <form action="@Url.Action("UsuarioBusqueda", "Usuario")" method="get">
                         <input type="text" name="query" placeholder="Buscar Usuario..." required />
                         <button type="submit">
                             <img src="~/Content/Botones/buscar.png" alt="Buscar" />
@@ -57,17 +52,7 @@
 
     <div class="content">
 
-        <div class="buscador-recetas-defualt">
-            <div class="formulario-group-nav">
-
-                <form action="@Url.Action("BuscarReceta", "Receta")" method="get">
-                    <input type="text" name="query" placeholder="Buscar Receta..." required />
-                    <button type="submit">
-                        <img src="~/Content/Botones/buscar.png" alt="Buscar" />
-                    </button>
-                </form>
-            </div>
-        </div>
+        
         
         <main>
             
